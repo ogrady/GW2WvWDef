@@ -145,14 +145,13 @@ $(() => {
 		], {color: 'black'}).arrowheads().bindPopup(`hi there`, {maxWidth: 2000})
 		layers[siege.type].push(simpleVector0);
 
-		siege.directions.forEach(dir => {
+        siege.directions.forEach(dir => {
 			console.log(dir);
-			const arrow = L.polyline([unproject([siegeX,siegeZ]), 
+			const arrow = L.polyline([unproject([siegeX,siegeZ])
    	        						  , unproject(tacoToGW2Coord(dir.mapid, dir.position.x, dir.position.z, -iconSize[0]/2, -iconSize[1]/2))]
    	        						  , {"color":"red"}); //.addTo(map);
         	layers[siege.type].push(arrow);
 		})
-        
 
         
 		/*var arrowHead = L.polylineDecorator(arrow, {
