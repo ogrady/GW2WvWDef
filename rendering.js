@@ -142,7 +142,7 @@ $(() => {
         siege.directions.forEach(dir => {
             const arrow = L.polyline(
                                 [unproject([siegeX, siegeZ])
-                                , unproject(tacoToGW2Coord(dir.mapid, dir.position.x, dir.position.z, -iconSize[0]/2, -iconSize[1]/2))]
+                                , unproject(tacoToGW2Coord(dir.mapid, dir.position.x, dir.position.z))]
                                 , {color:"#ffff00"})
                             .arrowheads({
                               yawn: 40,
@@ -160,4 +160,6 @@ $(() => {
         siegeTypes[l] = group;
     }
     L.control.layers({}, siegeTypes).addTo(map);
+
+    map.setView([-200, 0], 0);
 });
