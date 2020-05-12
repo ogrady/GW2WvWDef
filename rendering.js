@@ -127,9 +127,9 @@ $(() => {
     for (const i in data) {
         const siege = data[i];
         //const maprect = mapRects[siege.mapid];
-        const [siegeX, siegeZ] = tacoToGW2Coord(siege.mapid, siege.position.x, siege.position.z, -iconSize[0]/2, -iconSize[1]/2);
+        const [siegeX, siegeZ] = tacoToGW2Coord(siege.mapid, siege.position.x, siege.position.z); // y is height
 
-        const marker = L.marker(unproject([siegeX, siegeZ]), { // y is height
+        const marker = L.marker(unproject([siegeX -iconSize[0]/2 , siegeZ -iconSize[1]/2]), { // compensate for icon size
             title: siege.type,
             icon: getLeafletIcon(siege.type, siege.tier)
 
@@ -147,9 +147,9 @@ $(() => {
 
         siege.directions.forEach(dir => {
 			console.log(dir);
-			const arrow = L.polyline([unproject([siegeX,siegeZ])
+			const arrow = L.polyline([unproject([siegeX, siegeZ])
    	        						  , unproject(tacoToGW2Coord(dir.mapid, dir.position.x, dir.position.z, -iconSize[0]/2, -iconSize[1]/2))]
-   	        						  , {"color":"red"}); //.addTo(map);
+   	        						  , {"color":"red",});//.arrowheads().bindPopup(`hi there`); //.addTo(map);
         	layers[siege.type].push(arrow);
 		})
 
